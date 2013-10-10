@@ -1,0 +1,29 @@
+## Vold 2.0 Generic fstab
+## - San Mehat (san@android.com)
+## 
+
+#######################
+## Regular device mount
+##
+## Format: dev_mount <label> <mount_point> <part> <sysfs_path1...> 
+## label        - Label for the volume
+## mount_point  - Where the volume will be mounted
+## part         - Partition # (1 based), or 'auto' for first usable partition.
+## <sysfs_path> - List of sysfs paths to source devices
+######################
+
+## Example of a standard sdcard mount for the emulator / Dream
+# Mounts the first usable partition of the specified device
+#dev_mount sdcard /mnt/sdcard auto /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1
+dev_mount LOCAL /mnt/sdcard auto /devices/virtual/mtd/mtd5/ubiblk0
+dev_mount SDCARD /mnt/sdcard1 auto /devices/platform/imap-mmc.1/mmc_host/mmc0
+dev_mount UDISK1 /mnt/udisk auto /devices/platform/dwc_otg/usb3/3-1/3-1:1.0 /devices/platform/imap-ehci/usb1/1-3/1-3:1.0 /devices/platform/imap-ehci/usb1/1-1/1-1:1.0 /devices/platform/imap-ehci/usb1/1-2/1-2:1.0
+#dev_mount UDISK1 /mnt/udisk1 auto /devices/platform/dwc_otg/usb3/3-1/3-1:1.0 
+#dev_mount UDISK2 /mnt/udisk2 auto 
+#dev_mount UDISK2 /mnt/sdcard/udisk2 1 /devices/platform/imap-ehci/usb1/1-2/1-2:1.0
+## Example of a dual card setup
+# dev_mount left_sdcard  /sdcard1  auto /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1
+# dev_mount right_sdcard /sdcard2  auto /devices/platform/goldfish_mmc.1 /devices/platform/msm_sdcc.3/mmc_host/mmc1
+
+## Example of specifying a specific partition for mounts
+# dev_mount sdcard /sdcard 2 /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1

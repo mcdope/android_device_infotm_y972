@@ -1,0 +1,14 @@
+# system.prop for infotmic a5mid reference board
+# This overrides settings in the products/generic/system.prop file
+
+
+# preload class
+ro.infotm.no.preloadclass=1
+
+# preload resource
+ro.infotm.no.preloadresources=1
+
+#launcher debug
+sys.infotm.demoversion=false
+sys.infotm.launcher.scrollspeed=middle
+
